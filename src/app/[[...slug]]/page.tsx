@@ -44,10 +44,16 @@ export default function Tour({ searchParams }: TourProps) {
     if (targetScene) switchScene(targetScene);
   }, [target]);
 
+  const CreateElementSpots = () => {
+    
+  }
+
 
   return (
     <div className="tour-container">
-      <div ref={panoElement} className="pano"></div>
+      <div ref={panoElement} className="pano">
+        
+      </div>
     </div>
   );
 }

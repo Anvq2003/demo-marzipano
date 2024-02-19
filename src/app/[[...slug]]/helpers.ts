@@ -11,18 +11,18 @@ export const createPanoViewer = (panoElm: HTMLElement, settings: ISettingsPano) 
   return panoViewer;
 };
 
-const createLinkHotspotElement = (hotspot: { target: string }, router: any) => {
-  const handleClick = () => {
-    const url = new URL(window.location.href);
-    url.searchParams.set('target', hotspot.target);
-    router.push(url.toString());
-  };
+// const createLinkHotspotElement = (hotspot: { target: string }, router: any) => {
+//   const handleClick = () => {
+//     const url = new URL(window.location.href);
+//     url.searchParams.set('target', hotspot.target);
+//     router.push(url.toString());
+//   };
 
-  const element = document.createElement('div');
-  element.classList.add('link-hotspot');
-  element.addEventListener('click', handleClick);
-  return element;
-};
+//   const element = document.createElement('div');
+//   element.classList.add('link-hotspot');
+//   element.addEventListener('click', handleClick);
+//   return element;
+// };
 
 const createSpots = (scene: any, linkHotspots: any) => {
   let hotspots: any[] = [];
