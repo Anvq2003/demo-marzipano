@@ -19,12 +19,12 @@ interface TourProps {
 
 export default function Tour({ searchParams }: TourProps) {
   const router = useRouter();
-  
+
   const panoElement = useRef<HTMLDivElement>(null);
   const scenes = useRef<SceneRef[]>([]);
 
   const target = searchParams.target;
-  
+
   const switchScene = (scene: SceneRef) => {
     scene.scene.switchTo();
   };
@@ -44,15 +44,11 @@ export default function Tour({ searchParams }: TourProps) {
     if (targetScene) switchScene(targetScene);
   }, [target]);
 
-  const CreateElementSpots = () => {
-    
-  }
-
 
   return (
     <div className="tour-container">
       <div ref={panoElement} className="pano">
-        
+        /// pano viewer will be rendered here
       </div>
     </div>
   );

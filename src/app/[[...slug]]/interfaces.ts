@@ -7,8 +7,7 @@ export interface ISettingsPano {
 
 export interface SceneRef {
   sceneData: Scene;
-  scene: any; 
-  spots: any[];
+  scene: any;
 }
 
 export interface Scene {

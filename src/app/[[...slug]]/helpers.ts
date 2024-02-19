@@ -56,10 +56,10 @@ export const createScenes = (scenes: Scene[] | undefined, viewer: any, router: a
     });
 
     // Create link hotspots
-    // sceneData.linkHotspots.forEach((hotspot) => {
-    //   // const element = createLinkHotspotElement(hotspot, router);
-    //   // scene.hotspotContainer().createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch });
-    // });
+    sceneData.linkHotspots.forEach((hotspot) => {
+      // const element = createLinkHotspotElement(hotspot, router);
+      // scene.hotspotContainer().createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch });
+    });
 
     const spots = createSpots(scene, sceneData.linkHotspots);
 
