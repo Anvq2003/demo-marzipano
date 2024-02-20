@@ -1,48 +1,46 @@
 'use client';
 import './style.css';
+
 import { useEffect, useRef, useState } from 'react';
-import { createHotSpots, createPanoViewer, createScenes } from './helpers';
-import { SceneRef } from './interfaces';
+
 import CreateElementsSpots from './components/CreateElementsSpots';
-import { data } from './data';
+import { createHotSpots, createPanoViewer, createScene } from './helpers';
+import { IScene, ISceneData } from './interfaces';
 
 interface View360Props {
-  scene: string;
+  data: any;
 }
 
-export default function View360({ scene }: View360Props) {
+export default function View360({ data }: View360Props) {
   const panoElement = useRef<HTMLDivElement>(null);
-  const scenes = useRef<SceneRef[]>([]);
-
+  
   const [_, setViewer] = useState<any>(null);
 
-  const switchScene = (scene: SceneRef) => {
-    scene.scene.switchTo();
+  const sceneData = useRef<ISceneData | any>({
+    Scene: null,
+    spots: [],
+    originData: {},
+  });
+
+  const switchScene = (Scene: IScene) => {
+    Scene.switchTo();
   };
 
   useEffect(() => {
     if (!panoElement.current) return;
-    const viewer = createPanoViewer(panoElement.current, data.settings);
-    scenes.current = createScenes(data.scenes, viewer);
-    switchScene(scenes.current[0]);
+    const viewer = createPanoViewer(panoElement.current);
+    sceneData.current = createScene(data, viewer);
     setViewer(viewer);
+    switchScene(sceneData.current?.Scene);
     setTimeout(() => {
-      createHotSpots(scenes.current);
+      createHotSpots(sceneData.current);
     }, 1);
-  }, []);
-
-  // Run when scene changes
-  useEffect(() => {
-    const targetScene = scenes.current.find((s) => s.sceneData.id === scene);
-    if (targetScene) switchScene(targetScene);
-  }, [scene]);
+  }, [data]);
 
   return (
     <div className="View360-container">
       <div ref={panoElement} className="pano" />
-      {scenes.current.map((scene) => (
-        <CreateElementsSpots key={scene.sceneData.id} scene={scene} />
-      ))}
+      <CreateElementsSpots sceneData={sceneData.current} />
     </div>
   );
 }

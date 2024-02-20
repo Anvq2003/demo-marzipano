@@ -5,13 +5,18 @@ export interface ISettingsPano {
   viewControlButtons?: boolean;
 }
 
-export interface SceneRef {
-  sceneData: Scene;
-  scene: any;
+export interface ISceneData {
+  Scene: IScene
   spots: any[];
+  originData: IOriginData;
 }
 
-export interface Scene {
+export interface IScene {
+  hotspotContainer: () => any;
+  switchTo: () => void;
+}
+
+export interface IOriginData {
   id: string;
   name: string;
   levels: { tileSize: number; size: number; fallbackOnly?: boolean }[];

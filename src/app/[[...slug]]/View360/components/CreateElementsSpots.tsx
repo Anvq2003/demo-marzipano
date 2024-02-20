@@ -1,22 +1,21 @@
 import Link from 'next/link';
-import { SceneRef } from '../interfaces';
+import { ISceneData } from '../interfaces';
 
 export interface ILinkHotSpotProps {
-  scene: SceneRef;
+  sceneData: ISceneData;
 }
 
-export default function CreateElementsSpots({ scene }: ILinkHotSpotProps) {
+export default function CreateElementsSpots({ sceneData }: ILinkHotSpotProps) {
   return (
     <>
-      {scene?.sceneData?.linkHotspots?.map((hotspot, index) => {
+      {sceneData?.originData?.linkHotspots?.map((hotspot: any, index: number) => {
         return (
           <Link
             key={index}
             className="link-hotspot"
             href={`?scene=${hotspot.target}`}
-            ref={(e) => (scene.spots[index] = e)}
+            ref={(e) => (sceneData.spots[index] = e)}
           >
-            {scene.sceneData.name}
           </Link>
         );
       })}
