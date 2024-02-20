@@ -23,7 +23,7 @@ export default function View360({ data }: View360Props) {
   });
 
   const switchScene = (Scene: IScene) => {
-    Scene.switchTo();
+    Scene?.switchTo();
   };
 
   useEffect(() => {
